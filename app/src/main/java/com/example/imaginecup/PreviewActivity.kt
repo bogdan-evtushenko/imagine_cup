@@ -12,7 +12,7 @@ class PreviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preview)
-        //Log.d("myTag", "Hello world")
+        // Log.d("myTag", "Hello world")
 
         butOK.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(this, R.anim.move)
@@ -22,7 +22,7 @@ class PreviewActivity : AppCompatActivity() {
                 delay(500)
                 withContext(Dispatchers.Main) {
                     startActivity(Intent(this@PreviewActivity, MainActivity::class.java))
-                }r
+                }
             }
         }
     }
