@@ -4,11 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".PreviewActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="preview" />
-
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="Find your photos as fast as possible"
+            android:textSize="20dp"
+            android:textStyle="normal">
+        </TextView>
+        <ImageView
+            android:id="@+id/rocket"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rocket"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent">
+        </ImageView>
+        <Button
+            android:id="@+id/btnOK"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="50dp"
+            android:text="Start"
+            style="@style/Widget.AppCompat.Button.Colored">
+        </Button>
+    </FrameLayout>
 </LinearLayout>
