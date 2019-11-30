@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.text.TextUtils
 import android.widget.Toast
 import com.google.gson.Gson
-import edmt.dev.edmtdevcognitivevision.Contract.AnalysisResult
 import edmt.dev.edmtdevcognitivevision.Rest.VisionServiceException
 import edmt.dev.edmtdevcognitivevision.VisionServiceClient
 import edmt.dev.edmtdevcognitivevision.VisionServiceRestClient
@@ -21,10 +19,8 @@ import java.io.InputStream
 class ComputerVision {
 
     var visionServiceClient: VisionServiceClient = VisionServiceRestClient(API_KEY, API_LINK)
-    // Ex : Endpoint : https://eastasia.api.cognitive.microsoft.com/vision/v1.0
 
-    fun test(context: Context) {
-        val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.test)
+    fun fetchInformationAboutPhoto(context: Context, bitmap: Bitmap, onComplete: (String) -> Unit) {
         val outputStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
         val inputStream: InputStream = ByteArrayInputStream(outputStream.toByteArray())
@@ -52,7 +48,7 @@ class ComputerVision {
                         println("Here")
                         publishProgress("Reconizing...")
                         val features =
-                            arrayOf("Description")
+                            arrayOf("Description", "Objects", "Faces")
                         val details = arrayOf<String>()
                         val result =
                             visionServiceClient.analyzeImage(inputStreams[0], features, details)
@@ -74,13 +70,14 @@ class ComputerVision {
                         ).show()
                     } else {
                         progressDialog.dismiss()
+                        /*
                         val result: AnalysisResult =
                             Gson().fromJson(s, AnalysisResult::class.java)
-                        val resultText = StringBuilder()
-                        for (caption in result.description.captions) resultText.append(
-                            caption.text
-                        )
-                        println("First result $resultText")
+                        val resultText = StringBuilder()*/
+                        /*for (caption in result.categories) resultText.append(
+                            caption.detail
+                        )*/
+                        onComplete(s!!)
                     }
                 }
 
