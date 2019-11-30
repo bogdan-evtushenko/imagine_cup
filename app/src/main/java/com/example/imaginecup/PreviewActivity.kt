@@ -12,9 +12,8 @@ class PreviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preview)
-        // Log.d("myTag", "Hello world")
 
-        butOK.setOnClickListener {
+        btnOK.setOnClickListener {
             val animation = AnimationUtils.loadAnimation(this, R.anim.move)
             rocket.startAnimation(animation)
 
