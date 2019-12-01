@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.imaginecup.PhotoActivity.Companion.newIntent
 import com.example.imaginecup.room.DatabaseClient
 import com.example.imaginecup.room.Photo
 import com.example.imaginecup.util.ImagePicker
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
         photosAdapter = PhotosAdapter(this) {
             //TODO past here start PhotoActivity
+            startActivity(newIntent(this@MainActivity, it))
         }
         photosAdapter.setItems(DatabaseClient.photosDao.getAll())
         recyclerView.layoutManager = GridLayoutManager(this, 4)
