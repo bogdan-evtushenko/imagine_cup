@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var photosAdapter: PhotosAdapter
+    private var searchView: SearchView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                             println("Photo are uploaded")
                             println("Photo is")
                             println(photo)
+                            searchView?.isIconified = true
                             DatabaseClient.photosDao.insert(photo)
                             photosAdapter.setItems(DatabaseClient.photosDao.getAll())
                         }
@@ -72,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_search, menu)
         val searchItem: MenuItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as? SearchView
+        searchView = searchItem.actionView as? SearchView
         searchView?.imeOptions = EditorInfo.IME_ACTION_DONE
         println("Here search view $searchView")
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
