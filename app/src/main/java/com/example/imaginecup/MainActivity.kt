@@ -4,12 +4,15 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.imaginecup.room.DatabaseClient
 import com.example.imaginecup.room.Photo
 import com.example.imaginecup.util.ImagePicker
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var photosAdapter: PhotosAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,12 @@ class MainActivity : AppCompatActivity() {
             println(DatabaseClient.photosDao.getAll())
             uploadPhoto()
         }
+        photosAdapter = PhotosAdapter(this) {
+            //TODO past here start PhotoActivity
+        }
+        photosAdapter.setItems(DatabaseClient.photosDao.getAll())
+        recyclerView.layoutManager = GridLayoutManager(this, 4)
+        recyclerView.adapter = photosAdapter
     }
 
     private fun uploadPhoto() {
@@ -45,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                             println("Photo is")
                             println(photo)
                             DatabaseClient.photosDao.insert(photo)
+                            photosAdapter.setItems(DatabaseClient.photosDao.getAll())
                         }
                     }
                 }
