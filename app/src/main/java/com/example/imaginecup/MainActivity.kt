@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = photosAdapter
     }
 
+    override fun onStart() {
+        super.onStart()
+        photosAdapter.setItems(DatabaseClient.photosDao.getAll())
+    }
+
     private fun uploadPhoto() {
         val chooseImageIntent = ImagePicker.getPickImageIntent(this)
         startActivityForResult(chooseImageIntent, REQUEST_PICK_IMAGE)

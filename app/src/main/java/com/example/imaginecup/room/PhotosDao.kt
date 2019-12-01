@@ -1,9 +1,6 @@
 package com.example.imaginecup.room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface PhotosDao {
@@ -13,4 +10,7 @@ interface PhotosDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(photo: Photo)
+
+    @Delete
+    fun delete(photo: Photo)
 }
