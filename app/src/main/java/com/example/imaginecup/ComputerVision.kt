@@ -48,7 +48,7 @@ class ComputerVision {
                         println("Here")
                         publishProgress("Reconizing...")
                         val features =
-                            arrayOf("Description", "Objects", "Faces")
+                            arrayOf("Description", "Objects", "Faces", "Tags", "Categories")
                         val details = arrayOf<String>()
                         val result =
                             visionServiceClient.analyzeImage(inputStreams[0], features, details)

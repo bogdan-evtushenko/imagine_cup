@@ -24,9 +24,5 @@ class PreviewActivity : AppCompatActivity() {
                 }
             }
         }
-
-        btnPhoto.setOnClickListener {
-            startActivity(Intent(this, PhotoActivity::class.java))
-        }
     }
 }
