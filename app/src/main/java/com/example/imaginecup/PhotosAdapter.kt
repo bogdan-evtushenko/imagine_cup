@@ -38,11 +38,13 @@ class PhotosAdapter(
 
     fun setItems(photosList: List<Photo>) {
         items = photosList
+        showingItems.clear()
         showingItems.addAll(photosList)
         notifyDataSetChanged()
     }
 
     private fun checkFilterPatter(filterPattern: String, analysisResult: AnalysisResult): Boolean {
+        if (filterPattern.isEmpty()) return false
         analysisResult.description.captions.forEach {
             if (it.text.contains(filterPattern)) {
                 return true

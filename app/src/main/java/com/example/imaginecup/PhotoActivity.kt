@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import com.example.imaginecup.room.DatabaseClient
 import com.example.imaginecup.room.Photo
+import com.example.imaginecup.util.ImagePicker
+import com.example.imaginecup.util.ImageUtils
 import com.google.gson.Gson
 import edmt.dev.edmtdevcognitivevision.Contract.AnalysisResult
 import kotlinx.android.synthetic.main.activity_photo.*
@@ -26,10 +28,11 @@ class PhotoActivity : AppCompatActivity() {
         val microsoftDesc = analysisResult.description.captions[0].text
         val desc = analysisResult.description.tags.joinToString()
         var objects = mutableListOf<String>()
-        analysisResult.tags.forEach{
+        analysisResult.tags.forEach {
             objects.add(it.name)
             Log.d("idk", it.name)
         }
+        ImageUtils.displayRoundedPicture(this, photo.bitmap, ivPhoto)
 
         microsoftText.text = microsoftDesc
         descText.text = desc
