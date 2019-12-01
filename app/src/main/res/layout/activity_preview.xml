@@ -4,8 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
     tools:context=".PreviewActivity">
+    <Button
+        android:id="@+id/btnPhoto"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="50dp"
+        android:text="Photo"
+        style="@style/Widget.AppCompat.Button.Colored">
+    </Button>
 
     <FrameLayout
         android:id="@+id/frameLayout1"
